@@ -1,0 +1,23 @@
+/* FeedPage.css */
+
+.feed-container {
+  @apply w-full max-w-[700px] mx-auto flex flex-col font-k2d text-white pb-20 px-4 sm:px-0;
+}
+
+.feed-list {
+  @apply flex flex-col gap-8 mt-4 animate-in fade-in slide-in-from-bottom-4 duration-700;
+}
+
+/* Estado de Empty Feed (Vazio) */
+.feed-empty {
+  @apply flex flex-col items-center justify-center py-32 opacity-20 
+         border-2 border-dashed border-white/10 rounded-[32px] transition-all;
+}
+
+.feed-empty-title {
+  @apply text-[10px] font-bold uppercase tracking-[0.4em];
+}
+
+.feed-empty-subtitle {
+  @apply text-[12px] mt-2 italic opacity-50;
+}

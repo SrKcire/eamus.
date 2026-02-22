@@ -1,0 +1,58 @@
+/* src/styles/LoginPage.css */
+
+.login-page {
+  @apply fixed inset-0 w-screen h-screen flex items-center justify-center font-k2d overflow-hidden transition-all duration-700 ease-in-out;
+}
+
+.login-bg-container {
+  @apply absolute inset-0 z-0;
+}
+
+.login-bg-image {
+  /* Separamos a duração para evitar erro no PostCSS */
+  @apply w-full h-full bg-cover bg-center transition-transform;
+  transition-duration: 2000ms;
+}
+
+.login-overlay {
+  @apply absolute inset-0 bg-black/50 backdrop-blur-[10px];
+}
+
+.login-content {
+  @apply relative z-10 w-full max-w-[380px] flex flex-col items-center px-8;
+}
+
+.login-logo {
+  @apply text-[64px] font-black text-white mb-16 tracking-tighter animate-in slide-in-from-top duration-1000;
+}
+
+.login-form {
+  @apply w-full flex flex-col items-start gap-10 animate-in fade-in zoom-in-95 duration-1000 delay-200;
+}
+
+.login-input-group {
+  @apply w-full;
+}
+
+.login-label {
+  @apply block text-white/60 text-[14px] font-medium mb-1 transition-colors;
+}
+
+/* Efeito de foco no label quando o input está focado */
+.login-input-group:focus-within .login-label {
+  @apply text-white;
+}
+
+.login-input {
+  @apply w-full bg-transparent border-b-[1.5px] border-white/30 text-white py-2 focus:border-white focus:outline-none transition-all;
+}
+
+.login-button {
+  @apply mt-4 px-12 py-3 bg-white text-black font-black text-[16px] rounded-xl 
+         transition-all active:scale-95 shadow-xl disabled:opacity-50 
+         disabled:cursor-not-allowed hover:bg-[#D9D9D9];
+}
+
+.login-footer {
+  @apply absolute bottom-12 z-10 w-full text-center transition-opacity duration-500;
+}

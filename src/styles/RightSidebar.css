@@ -1,0 +1,51 @@
+/* RightSidebar.css */
+
+.right-sidebar-container {
+  @apply w-full h-full py-10 px-6 flex flex-col gap-12 font-k2d text-white bg-transparent overflow-y-auto scrollbar-hide;
+}
+
+.sidebar-section {
+  @apply flex flex-col gap-6;
+}
+
+.sidebar-section-title {
+  @apply text-[13px] uppercase tracking-[2px] font-bold opacity-40 px-2;
+}
+
+/* Itens de Eventos e Sugestões (Removido 'group' daqui) */
+.sidebar-item-row {
+  @apply flex items-center gap-4 relative; /* 'group' deve ir no HTML */
+}
+
+.avatar-circle-wrapper {
+  @apply w-[62px] h-[62px] border-[1.5px] rounded-full p-[3px] shrink-0 transition-all;
+}
+
+/* Note que o group-hover continua aqui, isso é permitido! */
+.avatar-event {
+  @apply border-white group-hover:scale-105;
+}
+
+.avatar-suggestion {
+  @apply border-white/20 group-hover:border-white;
+}
+
+.avatar-img {
+  @apply w-full h-full object-cover rounded-full;
+}
+
+.btn-sidebar-action {
+  @apply w-fit text-[10px] font-bold py-1 px-4 rounded-full transition-all uppercase tracking-wider;
+}
+
+.btn-primary-action {
+  @apply bg-white text-black hover:bg-opacity-80;
+}
+
+.btn-secondary-outline {
+  @apply bg-transparent border border-white/30 text-white hover:bg-white hover:text-black;
+}
+
+.remove-suggestion-btn {
+  @apply absolute -right-1 top-0 opacity-0 group-hover:opacity-40 hover:!opacity-100 transition-opacity p-1;
+}

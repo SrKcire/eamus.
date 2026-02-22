@@ -1,0 +1,37 @@
+/* src/styles/SearchPage.css */
+
+.search-container {
+  @apply w-full flex flex-col pb-20 max-w-[650px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700;
+}
+
+.search-title {
+  @apply text-[32px] font-black tracking-tighter italic mb-6 text-white pt-8;
+}
+
+.search-input-wrapper {
+  @apply relative mb-8;
+}
+
+.search-input {
+  @apply w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-14 
+         outline-none focus:border-white/30 transition-all text-white 
+         placeholder:text-white/20 backdrop-blur-sm;
+}
+
+.result-card {
+  @apply flex items-center gap-5 p-4 bg-white/[0.03] rounded-3xl border 
+         border-white/5 transition-all cursor-pointer;
+}
+
+/* Hover do Card - Usando seletor CSS padrão para segurança */
+.result-card:hover {
+  @apply border-white/20 bg-white/[0.06];
+}
+
+.result-image {
+  @apply w-16 h-16 rounded-2xl object-cover shadow-lg;
+}
+
+.empty-search-state {
+  @apply py-24 flex flex-col items-center opacity-10 transition-opacity duration-1000;
+}

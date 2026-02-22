@@ -1,0 +1,52 @@
+/* src/styles/SplashScreen.css */
+
+.splash-container {
+  @apply fixed inset-0 flex items-center justify-center bg-[#0a0a0a] z-[999] transition-all;
+  transition-duration: 1000ms;
+}
+
+.splash-exit {
+  @apply opacity-0 scale-110 blur-xl pointer-events-none;
+}
+
+.splash-glow {
+  @apply absolute w-[300px] h-[300px] bg-white/5 rounded-full blur-[100px];
+  animation: pulse-glow 4s infinite ease-in-out;
+}
+
+.splash-logo {
+  @apply text-[80px] md:text-[100px] font-black text-white tracking-tighter transition-all;
+  transition-duration: 1000ms;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+.progress-bar-container {
+  @apply w-12 h-[2px] bg-white/10 mt-4 overflow-hidden relative rounded-full;
+}
+
+.progress-bar-fill {
+  @apply absolute inset-0 bg-white/60;
+  animation: splash-progress 1.5s infinite ease-in-out;
+}
+
+/* Animações nativas */
+@keyframes splash-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}

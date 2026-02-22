@@ -1,0 +1,61 @@
+/* EditProfileModal.css */
+
+.edit-modal-overlay {
+  @apply fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm;
+}
+
+.edit-modal-card {
+  @apply relative w-full max-w-[500px] bg-[#121212] border-[1.5px] border-white 
+         rounded-[40px] overflow-hidden animate-in zoom-in-95 duration-300 shadow-2xl;
+}
+
+.edit-modal-header {
+  @apply flex justify-between items-center p-8 border-b border-white/10;
+}
+
+.edit-modal-title {
+  @apply text-[20px] font-black uppercase tracking-widest text-white;
+}
+
+/* Avatar Circle */
+.edit-avatar-container {
+  @apply relative cursor-pointer; /* 'group' será adicionado no TSX */
+}
+
+.edit-avatar-img {
+  @apply w-24 h-24 rounded-full object-cover border-2 border-white/20 
+         group-hover:opacity-40 transition-all duration-300;
+}
+
+.edit-avatar-overlay {
+  @apply absolute inset-0 flex items-center justify-center opacity-0 
+         group-hover:opacity-100 transition-opacity;
+}
+
+/* Form Styles */
+.edit-input-label {
+  @apply text-[11px] font-black opacity-30 uppercase ml-2 flex items-center gap-2 tracking-widest text-white;
+}
+
+.edit-input-field {
+  @apply w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 
+         outline-none text-white focus:border-white/40 transition-all 
+         placeholder:text-white/10;
+}
+
+.edit-textarea-field {
+  @apply w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 
+         outline-none text-white focus:border-white/40 transition-all 
+         resize-none placeholder:text-white/10;
+}
+
+/* Buttons */
+.btn-cancel {
+  @apply flex-1 py-4 rounded-2xl border border-white/10 text-white font-bold 
+         hover:bg-white/5 transition-all;
+}
+
+.btn-save {
+  @apply flex-1 py-4 rounded-2xl bg-white text-black font-black uppercase 
+         tracking-tight hover:scale-[1.02] active:scale-95 transition-all shadow-lg;
+}

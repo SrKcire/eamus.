@@ -1,0 +1,62 @@
+/* ChatPage.css */
+
+.chat-container {
+  @apply w-full flex flex-col font-k2d text-white h-[85dvh] max-h-[850px] animate-in fade-in duration-500;
+}
+
+.chat-wrapper {
+  @apply flex-1 flex flex-col gap-4 overflow-hidden;
+}
+
+/* Glass Card Principal */
+.chat-main-card {
+  @apply flex-1 border-[1.5px] border-white/20 rounded-[32px] flex flex-col 
+         overflow-hidden bg-white/5 backdrop-blur-xl relative shadow-2xl;
+}
+
+/* Área de Mensagens */
+.chat-messages-area {
+  @apply flex-1 overflow-y-auto scrollbar-hide p-4 flex flex-col gap-4 
+         bg-gradient-to-b from-transparent to-white/[0.02];
+}
+
+/* Balões de Mensagem */
+.message-bubble {
+  @apply p-3.5 rounded-[22px] cursor-pointer transition-all active:scale-[0.98] relative select-none;
+}
+
+.message-me {
+  @apply bg-white text-black rounded-tr-none self-end items-end;
+}
+
+.message-them {
+  @apply bg-white/10 border border-white/10 rounded-tl-none hover:bg-white/[0.12] self-start items-start;
+}
+
+/* Reações */
+.reaction-pill {
+  @apply bg-[#121212] border border-white/20 rounded-full px-1.5 py-0.5 
+         text-[9px] shadow-md text-white flex gap-0.5;
+}
+
+.floating-reactions {
+  @apply absolute -top-10 bg-black/90 border border-white/20 rounded-full 
+         px-3 py-1.5 flex gap-3 z-50 animate-in slide-in-from-bottom-2 shadow-2xl;
+}
+
+/* Input Area */
+.chat-footer {
+  @apply p-4 pt-2 relative;
+}
+
+.chat-input-group {
+  @apply flex items-center gap-3 bg-white/10 border border-white/10 
+         rounded-[24px] pl-4 pr-2 py-2 focus-within:border-white/30 
+         transition-all shadow-inner;
+}
+
+/* Indicador de Digitação */
+.typing-indicator {
+  @apply self-start bg-white/5 px-4 py-2.5 rounded-[20px] rounded-tl-none 
+         flex gap-1.5 items-center border border-white/5;
+}

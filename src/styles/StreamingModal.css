@@ -1,0 +1,219 @@
+/* Overlay e Container Principal */
+.streaming-modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 9999;
+}
+
+.streaming-modal-card {
+  width: 380px;
+  background-color: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: modalAppear 0.3s ease-out;
+}
+
+/* Header */
+.streaming-modal-header {
+  position: relative;
+  height: 224px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+}
+
+.header-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #121212,
+    rgba(18, 18, 18, 0.4) 60%,
+    transparent
+  );
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.close-modal-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-info {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+
+.pulse-icon {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.track-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.artist-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+/* Lista de Plataformas */
+.platforms-list {
+  padding: 20px;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.platform-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--brand-color-transparent);
+}
+
+.platform-item:not(.disabled):hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  transform: translateX(4px);
+}
+
+.platform-item:not(.disabled):active {
+  transform: scale(0.98);
+}
+
+.platform-item.disabled {
+  opacity: 0.2;
+  filter: grayscale(1);
+  cursor: not-allowed;
+}
+
+.platform-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--brand-color);
+  box-shadow: 0 0 8px 1px var(--brand-color);
+}
+
+.platform-name {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.platform-item:hover .platform-name {
+  color: white;
+}
+
+.play-icon-wrapper {
+  padding: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.platform-item:hover .play-icon-wrapper {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 15px var(--brand-color-transparent);
+}
+
+.x-icon-disabled {
+  opacity: 0.4;
+  color: white;
+}
+
+/* Footer */
+.modal-footer-brand {
+  padding-bottom: 24px;
+  padding-top: 8px;
+  text-align: center;
+}
+
+.modal-footer-brand span {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 700;
+}
+
+/* Animações */
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

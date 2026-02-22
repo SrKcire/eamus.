@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    /* Define a cor de fundo oficial e a fonte K2D para todo o projeto */
+    @apply bg-[#1E1E1E] text-white antialiased;
+    font-family: 'K2D', sans-serif;
+  }
+}
+
+/* Animação Typing Indicator */
+@keyframes typing {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  animation: typing 1s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Efeito de Waveform Simulado */
+.waveform-bar {
+  display: inline-block;
+  width: 3px;
+  background-color: currentColor;
+  margin: 0 1px;
+  border-radius: 2px;
+  transition: height 0.2s;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 0.6s infinite;
+}
+
+/* Utilitários para esconder a barra de rolagem */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE e Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+/* Reset global para esconder scrollbars em qualquer elemento */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}

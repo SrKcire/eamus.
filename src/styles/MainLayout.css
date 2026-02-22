@@ -1,0 +1,26 @@
+/* MainLayout.css */
+
+/* Container Raiz do Layout */
+.main-layout-wrapper {
+  @apply h-screen w-full bg-[#121212] overflow-hidden fixed inset-0 flex;
+}
+
+/* Coluna de Navegação (Esquerda) */
+.sidebar-navigation {
+  @apply w-[280px] h-full flex-shrink-0 border-r border-white/5 bg-[#121212] z-[100] relative;
+}
+
+/* Área de Conteúdo Principal (Centro) */
+.main-content-area {
+  @apply flex-1 h-full overflow-y-auto scrollbar-hide flex justify-center pt-8 px-4 bg-[#121212] z-10 relative;
+}
+
+/* Container do Feed limitado */
+.feed-container {
+  @apply w-full max-w-[654px] pb-20;
+}
+
+/* Coluna de Widgets/Sugestões (Direita) */
+.sidebar-widgets {
+  @apply w-[350px] h-full flex-shrink-0 border-l border-white/5 bg-[#121212] z-[50] relative;
+}

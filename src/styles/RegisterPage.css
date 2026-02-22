@@ -1,0 +1,55 @@
+/* src/styles/RegisterPage.css */
+
+.register-page {
+  @apply fixed inset-0 w-screen h-screen flex items-center justify-center font-k2d overflow-hidden transition-all duration-700 ease-in-out;
+}
+
+.register-bg-container {
+  @apply absolute inset-0 z-0;
+}
+
+.register-bg-image {
+  @apply w-full h-full bg-cover bg-center transition-transform;
+  transition-duration: 2000ms;
+}
+
+.register-overlay {
+  @apply absolute inset-0 bg-black/50 backdrop-blur-[15px];
+}
+
+.register-content {
+  @apply relative z-10 w-full max-w-[420px] flex flex-col items-center px-8;
+}
+
+.register-logo {
+  @apply text-[56px] font-black text-white mb-8 tracking-tighter animate-in slide-in-from-top duration-700;
+}
+
+.register-form {
+  @apply w-full flex flex-col gap-6 animate-in fade-in zoom-in-95 duration-1000 delay-150;
+}
+
+.register-input-group {
+  @apply w-full;
+}
+
+.register-label {
+  @apply block text-white/60 text-[13px] font-medium mb-1 transition-colors;
+}
+
+/* Fallback para o focus-within que não buga o PostCSS */
+.register-input-group:focus-within .register-label {
+  @apply text-white;
+}
+
+.register-input {
+  @apply w-full bg-transparent border-b-[1.5px] border-white/20 text-white py-1.5 focus:border-white focus:outline-none transition-all placeholder:text-white/10;
+}
+
+.register-button {
+  @apply mt-4 px-12 py-3 bg-white text-black font-black text-[16px] rounded-xl transition-all active:scale-95 shadow-2xl w-fit;
+}
+
+.register-footer {
+  @apply absolute bottom-10 z-10 w-full text-center transition-opacity duration-500;
+}

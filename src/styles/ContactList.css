@@ -1,0 +1,44 @@
+/* ContactList.css */
+.contact-list-container {
+  @apply flex gap-4 overflow-x-auto scrollbar-hide pb-2 shrink-0 px-1;
+}
+
+.contact-item {
+  @apply flex flex-col items-center gap-2 shrink-0 transition-all;
+}
+
+.contact-item-active {
+  @apply opacity-100 scale-105;
+}
+
+.contact-item-inactive {
+  @apply opacity-40 hover:opacity-70;
+}
+
+.avatar-wrapper {
+  @apply relative w-14 h-14 border-2 rounded-full p-0.5 transition-colors;
+}
+
+.avatar-wrapper-active {
+  @apply border-white;
+}
+
+.avatar-wrapper-inactive {
+  @apply border-transparent;
+}
+
+.contact-avatar {
+  @apply w-full h-full object-cover rounded-full;
+}
+
+.online-indicator {
+  @apply absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-[#121212] rounded-full z-10;
+}
+
+.unread-badge {
+  @apply absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#121212] animate-in zoom-in;
+}
+
+.contact-name {
+  @apply text-[10px] font-bold uppercase tracking-wider;
+}

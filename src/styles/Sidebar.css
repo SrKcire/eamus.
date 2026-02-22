@@ -1,0 +1,58 @@
+/* Sidebar.css */
+
+.sidebar-container {
+  @apply flex flex-col h-full py-10 px-8 font-k2d text-white bg-[#121212] pointer-events-auto border-r border-white/5;
+}
+
+.sidebar-logo {
+  @apply text-[42px] font-bold tracking-tighter leading-none mb-10 px-2 shrink-0;
+}
+
+.nav-menu {
+  @apply flex flex-col gap-9 flex-1;
+}
+
+/* Links e Itens de Menu */
+.nav-item {
+  @apply flex items-center gap-5 transition-all z-[200];
+}
+
+.nav-item-active {
+  @apply opacity-100;
+}
+
+.nav-item-inactive {
+  @apply opacity-60 hover:opacity-100;
+}
+
+.nav-label {
+  @apply text-[18px];
+}
+
+.nav-label-active {
+  @apply font-bold;
+}
+
+/* Badges de Notificação */
+.notification-badge {
+  @apply absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold min-w-[18px] h-[18px] flex items-center justify-center rounded-full border-[2px] border-[#121212];
+}
+
+/* Avatar de Perfil no Menu */
+.menu-profile-avatar {
+  @apply w-7 h-7 rounded-full overflow-hidden border border-white/20 shrink-0 relative;
+}
+
+/* Botão de Criar (Destaque) */
+.btn-create-highlight {
+  @apply flex items-center gap-5 opacity-60 hover:opacity-100 transition-all z-[200];
+}
+
+.create-icon-wrapper {
+  @apply shrink-0 w-7 h-7 bg-white text-black rounded-lg flex items-center justify-center transition-transform shadow-[0_0_15px_rgba(255,255,255,0.3)];
+}
+
+/* Footer (Configurações e Mais) */
+.sidebar-footer {
+  @apply flex flex-col gap-8 mt-auto pt-10 shrink-0;
+}
