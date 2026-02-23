@@ -24,8 +24,20 @@ const Sidebar: React.FC = () => {
     notifications?.filter((n) => !n.isRead && n.type === 'message').length || 0;
 
   const menuItems = [
+    {
+      name: 'Perfil',
+      path: '/profile',
+      icon: (
+        <div className="menu-profile-avatar">
+          <img
+            src={user.avatar}
+            className="w-full h-full object-cover"
+            alt="Perfil"
+          />
+        </div>
+      ),
+    },
     { name: 'Página inicial', icon: <Home size={28} />, path: '/' },
-    { name: 'Pesquisa', icon: <Search size={28} />, path: '/search' },
     {
       name: 'Notificações',
       icon: <Bell size={28} />,
@@ -38,88 +50,83 @@ const Sidebar: React.FC = () => {
       path: '/chat',
       badgeCount: unreadMessages,
     },
-    {
-      name: 'Perfil',
-      path: '/profile',
-      icon: (
-        <div className="menu-profile-avatar border-2 border-transparent group-hover:border-white/50 transition-all">
-          <img
-            src={user.avatar}
-            className="w-full h-full object-cover rounded-full"
-            alt="Perfil"
-          />
-        </div>
-      ),
-    },
+    { name: 'Pesquisa', icon: <Search size={28} />, path: '/search' },
   ];
 
   return (
-    // Removidas larguras fixas daqui para o MainLayout controlar via Tailwind
-    <div className="flex flex-col h-full w-full py-6 px-4">
-      
-      {/* Logo: Esconde o texto em telas médias (md), mostra em grandes (lg) */}
-      <div className="mb-10 px-2 flex justify-center lg:justify-start">
-        <h1 className="text-2xl font-bold tracking-tighter text-white">
+    <div className="sidebar-container">
+      {/* Logo - Visível apenas do tablet/desktop em diante para não ocupar espaço no mobile */}
+      <div className="shrink-0 hidden md:flex justify-center lg:justify-start">
+        <h1 className="sidebar-logo">
           <span className="hidden lg:inline">eamus.</span>
-          <span className="lg:hidden text-3xl">e.</span>
+          <span className="lg:hidden">e.</span>
         </h1>
       </div>
 
       {/* Navegação Principal */}
-      <nav className="flex-1 flex flex-col gap-2">
+      <nav className="nav-menu">
         {menuItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex items-center gap-4 p-3 rounded-xl transition-all duration-200 hover:bg-white/10 ${
-                isActive ? 'text-white font-bold' : 'text-gray-400 hover:text-white'
-              }`}
+              className={`nav-item ${
+                isActive ? 'nav-item-active' : 'nav-item-inactive'
+              } group justify-center lg:justify-start`}
             >
-              <div className="relative shrink-0 flex items-center justify-center w-7 h-7">
+              <div className="shrink-0 relative">
                 {item.icon}
                 {item.badgeCount !== undefined && item.badgeCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-[10px] text-white w-4 h-4 rounded-full flex items-center justify-center">
-                    {item.badgeCount}
-                  </span>
+                  <span className="notification-badge">{item.badgeCount}</span>
                 )}
               </div>
-              <span className="hidden lg:inline text-lg">{item.name}</span>
+              {/* Label: Mantida a sua regra original de visibilidade */}
+              <span
+                className={`nav-label hidden lg:inline ${isActive ? 'nav-label-active' : ''}`}
+              >
+                {item.name}
+              </span>
             </Link>
           );
         })}
 
-        {/* Botão Criar: No Tablet vira um círculo com +, no Desktop vira botão largo */}
+        {/* Botão Criar */}
         <button
           onClick={() => setIsCreateModalOpen(true)}
-          className="mt-4 flex items-center gap-4 p-3 rounded-xl bg-white text-black hover:bg-gray-200 transition-all justify-center lg:justify-start"
+          className="btn-create-highlight group justify-center lg:justify-start"
         >
-          <Plus size={24} strokeWidth={3} />
-          <span className="hidden lg:inline font-bold">Criar</span>
+          <div className="create-icon-wrapper group-hover:scale-110">
+            <Plus size={20} strokeWidth={3} />
+          </div>
+          <span className="nav-label hidden lg:inline">Criar</span>
         </button>
       </nav>
-
-      {/* Footer */}
-      <div className="mt-auto flex flex-col gap-2 border-t border-white/10 pt-4">
-        <Link
-          to="/settings"
-          className="flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/10 hover:text-white transition-all"
-        >
-          <Settings size={28} />
-          <span className="hidden lg:inline">Configurações</span>
-        </Link>
-
-        <button className="flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/10 hover:text-white transition-all">
-          <Menu size={28} />
-          <span className="hidden lg:inline">Mais</span>
-        </button>
-      </div>
 
       <CreatePostModal
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
       />
+
+      {/* Footer da Sidebar - Oculto no mobile para otimizar o espaço da barra inferior */}
+      <div className="sidebar-footer hidden md:flex">
+        <Link
+          to="/settings"
+          className={`nav-item ${
+            location.pathname === '/settings'
+              ? 'nav-item-active font-bold'
+              : 'nav-item-inactive'
+          } justify-center lg:justify-start`}
+        >
+          <Settings size={28} />
+          <span className="nav-label hidden lg:inline">Configurações</span>
+        </Link>
+
+        <Link to="/more" className="nav-item nav-item-inactive justify-center lg:justify-start">
+          <Menu size={28} />
+          <span className="nav-label hidden lg:inline">Mais opções</span>
+        </Link>
+      </div>
     </div>
   );
 };

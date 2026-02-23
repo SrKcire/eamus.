@@ -1,24 +1,23 @@
 /* Sidebar.css */
 
 .sidebar-container {
-  /* Removido o h-full fixo para deixar o MainLayout controlar */
-  @apply flex flex-col h-full font-k2d text-white bg-[#121212] pointer-events-auto border-r border-white/5 transition-all duration-300;
+  /* No modo tablet (md), reduzimos o padding lateral para a barra ficar mais fina */
+  @apply flex flex-col h-full py-10 px-4 lg:px-8 font-k2d text-white bg-[#121212] pointer-events-auto border-r border-white/5;
 }
 
-/* Logo adaptável */
 .sidebar-logo {
-  /* No mobile/tablet ela centraliza, no desktop alinha à esquerda */
-  @apply text-[32px] lg:text-[42px] font-bold tracking-tighter leading-none mb-10 px-2 shrink-0 text-center lg:text-left;
+  /* Mantida sua fonte 42px, apenas garantindo que não quebre em telas menores */
+  @apply text-[42px] font-bold tracking-tighter leading-none mb-10 px-2 shrink-0 overflow-hidden;
 }
 
 .nav-menu {
-  /* Ajuste no gap para não apertar em telas menores */
-  @apply flex flex-col gap-6 lg:gap-9 flex-1;
+  @apply flex flex-col gap-9 flex-1;
 }
 
 /* Links e Itens de Menu */
 .nav-item {
-  @apply flex items-center gap-5 transition-all z-[200] p-2 lg:p-0 justify-center lg:justify-start rounded-xl;
+  /* Adicionado justify-center para quando o texto sumir no md */
+  @apply flex items-center gap-5 transition-all z-[200] w-full;
 }
 
 .nav-item-active {
@@ -26,12 +25,11 @@
 }
 
 .nav-item-inactive {
-  @apply opacity-60 hover:opacity-100 hover:bg-white/5 lg:hover:bg-transparent;
+  @apply opacity-60 hover:opacity-100;
 }
 
-/* Esconde o texto dinamicamente baseado na classe que colocamos no TSX */
 .nav-label {
-  @apply text-[18px] hidden lg:block;
+  @apply text-[18px];
 }
 
 .nav-label-active {
@@ -45,26 +43,50 @@
 
 /* Avatar de Perfil no Menu */
 .menu-profile-avatar {
-  @apply w-7 h-7 rounded-full overflow-hidden border border-white/20 shrink-0 relative transition-transform group-hover:scale-110;
+  @apply w-7 h-7 rounded-full overflow-hidden border border-white/20 shrink-0 relative;
 }
 
 /* Botão de Criar (Destaque) */
 .btn-create-highlight {
-  @apply flex items-center gap-5 opacity-80 hover:opacity-100 transition-all z-[200] justify-center lg:justify-start;
+  @apply flex items-center gap-5 opacity-60 hover:opacity-100 transition-all z-[200] w-full;
 }
 
 .create-icon-wrapper {
-  @apply shrink-0 w-8 h-8 lg:w-7 lg:h-7 bg-white text-black rounded-lg flex items-center justify-center transition-transform shadow-[0_0_15px_rgba(255,255,255,0.3)];
+  @apply shrink-0 w-7 h-7 bg-white text-black rounded-lg flex items-center justify-center transition-transform shadow-[0_0_15px_rgba(255,255,255,0.3)];
 }
 
 /* Footer (Configurações e Mais) */
 .sidebar-footer {
-  @apply flex flex-col gap-6 lg:gap-8 mt-auto pt-6 lg:pt-10 shrink-0 border-t border-white/5 lg:border-none;
+  @apply flex flex-col gap-8 mt-auto pt-10 shrink-0;
 }
 
-/* Ajuste específico para quando a label sumir (Modo Tablet) */
-@media (max-width: 1024px) {
-  .nav-item {
-    @apply gap-0;
+/* Ajuste de largura da sidebar no MainLayout.css refletido aqui */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sidebar-container {
+    @apply items-center;
+  }
+}
+
+/* --- INSERÇÕES PARA RESPONSIVIDADE MOBILE --- */
+
+@media (max-width: 767px) {
+  .sidebar-container {
+    /* Removemos o padding de desktop e a borda lateral */
+    @apply py-0 px-0 border-r-0 h-full flex-row items-center;
+  }
+
+  .nav-menu {
+    /* No mobile, os itens ficam lado a lado com espaço uniforme */
+    @apply flex-row gap-0 justify-around items-center w-full h-full;
+  }
+
+  .nav-item, .btn-create-highlight {
+    /* No mobile, garantimos que o container do item não ocupe 100% de largura */
+    @apply w-auto p-2 justify-center;
+  }
+
+  .create-icon-wrapper {
+    /* Pequeno ajuste para o botão criar não ficar muito "brilhante" no mobile se preferir */
+    @apply shadow-none; 
   }
 }

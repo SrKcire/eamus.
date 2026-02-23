@@ -1,17 +1,52 @@
 /* FeedPage.css */
 
-.feed-container {
-  @apply w-full max-w-[700px] mx-auto flex flex-col font-k2d text-white pb-20 px-4 sm:px-0;
+.feed-page-wrapper {
+  @apply w-full max-w-[700px] mx-auto flex flex-col font-k2d text-white pb-20 px-0 sm:px-0;
 }
 
+/* 1. ESTILIZAÇÃO DOS FILTROS (TOP NAV) */
+.feed-filters {
+  @apply sticky top-0 z-[60] flex justify-center gap-8 py-6 bg-[#121212]/80 backdrop-blur-md border-b border-white/5 mb-4;
+}
+
+.filter-btn {
+  @apply relative text-[13px] font-bold uppercase tracking-[0.2em] transition-all pb-1;
+}
+
+.filter-active {
+  @apply opacity-100;
+}
+
+.filter-inactive {
+  @apply opacity-30 hover:opacity-60;
+}
+
+.filter-indicator {
+  @apply absolute bottom-0 left-0 w-full h-[1.5px] bg-white animate-in zoom-in duration-300;
+}
+
+/* 2. FEED LIST */
 .feed-list {
-  @apply flex flex-col gap-8 mt-4 animate-in fade-in slide-in-from-bottom-4 duration-700;
+  @apply flex flex-col gap-8 mt-4 animate-in fade-in slide-in-from-bottom-4 duration-700 px-4 sm:px-0;
 }
 
-/* Estado de Empty Feed (Vazio) */
+/* 3. SKELETON LOADERS (Efeito pulsante para Scroll Infinito) */
+.skeleton-card {
+  @apply w-full flex flex-col gap-4 opacity-40 mb-10;
+}
+
+.skeleton-media {
+  @apply w-full aspect-square bg-white/5 border-[1.5px] border-white/10 rounded-[32px];
+}
+
+.skeleton-text {
+  @apply h-4 bg-white/5 rounded-full ml-1;
+}
+
+/* 4. ESTADO DE EMPTY FEED */
 .feed-empty {
   @apply flex flex-col items-center justify-center py-32 opacity-20 
-         border-2 border-dashed border-white/10 rounded-[32px] transition-all;
+         border-2 border-dashed border-white/10 rounded-[32px] transition-all mx-4 sm:mx-0;
 }
 
 .feed-empty-title {
@@ -20,4 +55,9 @@
 
 .feed-empty-subtitle {
   @apply text-[12px] mt-2 italic opacity-50;
+}
+
+/* Ajuste para o scroll infinito não "pular" */
+.feed-container {
+  @apply w-full flex flex-col;
 }

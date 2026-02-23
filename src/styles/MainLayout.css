@@ -2,7 +2,7 @@
 
 /* Container Raiz do Layout */
 .main-layout-wrapper {
-  @apply h-screen w-full bg-[#121212] overflow-hidden fixed inset-0 flex;
+  @apply min-h-screen md:h-screen w-full bg-[#121212] md:overflow-hidden md:fixed md:inset-0 flex;
 }
 
 /* Coluna de Navegação (Esquerda) */
@@ -12,12 +12,12 @@
 
 /* Área de Conteúdo Principal (Centro) */
 .main-content-area {
-  @apply flex-1 h-full overflow-y-auto scrollbar-hide flex justify-center pt-8 px-4 bg-[#121212] z-10 relative;
+  @apply flex-1 h-full md:overflow-y-auto scrollbar-hide flex justify-center pt-8 px-0 md:px-4 bg-[#121212] z-10 relative;
 }
 
 /* Container do Feed limitado */
 .feed-container {
-  @apply w-full max-w-[654px] pb-20;
+  @apply w-full max-w-full md:max-w-[654px] pb-20;
 }
 
 /* Coluna de Widgets/Sugestões (Direita) */
@@ -25,20 +25,20 @@
   @apply w-[350px] h-full flex-shrink-0 border-l border-white/5 bg-[#121212] z-[50] relative;
 }
 
-.main-layout-wrapper {
-  display: flex;
-  width: 100%;
-  min-h: 100vh;
+/* --- CORREÇÕES DE RESPONSIVIDADE (FORA DAS CLASSES) --- */
+
+@media (max-width: 767px) {
+  .sidebar-navigation {
+    @apply fixed bottom-0 left-0 w-full h-[70px] border-r-0 border-t border-white/10;
+  }
+
+  .main-content-area {
+    @apply pt-4 pb-[80px];
+  }
 }
 
-/* Garante que o feed não tenha scroll horizontal no mobile */
-.feed-container {
-  width: 100%;
-  padding: 0;
-}
-
-@media (max-width: 768px) {
-  .feed-container {
-    padding-top: 10px; /* Espaço para o topo se necessário */
+@media (max-width: 1023px) {
+  .sidebar-widgets {
+    @apply hidden;
   }
 }
