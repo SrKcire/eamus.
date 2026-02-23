@@ -149,12 +149,22 @@ const CreatePostModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
       <audio ref={audioRef} onEnded={() => setPlayingTrackId(null)} />
 
       <div className="modal-overlay">
-        <div className="absolute inset-0" onClick={onClose} />
+        {/* Camada de clique para fechar - Escondida no mobile para evitar fechamento acidental */}
+        <div className="absolute inset-0 hidden md:block" onClick={onClose} />
+        
         <div className="modal-container">
+          {/* PAINEL LATERAL (Trilha/Tags/Eventos) */}
           {activeTab !== 'none' && (
             <div className="modal-side-panel">
-              <div className="p-5 border-b border-white/10">
-                <div className="search-input-wrapper">
+              <div className="p-5 border-b border-white/10 flex items-center gap-3">
+                {/* Botão voltar no mobile para fechar o painel lateral */}
+                <button 
+                  onClick={() => setActiveTab('none')}
+                  className="md:hidden text-white/60"
+                >
+                  <X size={18} />
+                </button>
+                <div className="search-input-wrapper flex-1">
                   <Search size={14} className="text-white/40" />
                   <input
                     placeholder={
@@ -218,7 +228,6 @@ const CreatePostModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                     </div>
                   ))}
 
-                {/* Tags e Eventos seguem o mesmo padrão anterior */}
                 {activeTab === 'tag' &&
                   filteredResults.map((u: any) => (
                     <div
@@ -265,8 +274,9 @@ const CreatePostModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
             </div>
           )}
 
-          <div className="modal-main-card">
-            <div className="flex justify-between items-center mb-6">
+          {/* CARD PRINCIPAL (Upload e Dados) */}
+          <div className={`modal-main-card ${activeTab !== 'none' ? 'hidden md:flex' : 'flex'}`}>
+            <div className="flex justify-between items-center mb-6 shrink-0">
               <h2 className="modal-header-title">Criar Post</h2>
               <button
                 onClick={onClose}
@@ -276,85 +286,91 @@ const CreatePostModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
               </button>
             </div>
 
-            <div onClick={selectFile} className="media-upload-area group">
-              {mediaUrl ? (
-                <img
-                  src={mediaUrl}
-                  className="w-full h-full object-cover"
-                  alt="Preview"
+            {/* Área de conteúdo rolável no mobile */}
+            <div className="flex-1 flex flex-col overflow-y-auto pr-1 scrollbar-hide space-y-7">
+              <div onClick={selectFile} className="media-upload-area group shrink-0">
+                {mediaUrl ? (
+                  <img
+                    src={mediaUrl}
+                    className="w-full h-full object-cover"
+                    alt="Preview"
+                  />
+                ) : (
+                  <div className="media-placeholder">
+                    <Plus size={32} />
+                  </div>
+                )}
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleFileChange}
                 />
-              ) : (
-                <div className="media-placeholder">
-                  <Plus size={32} />
+              </div>
+
+              <div className="flex flex-col space-y-7">
+                <InputField
+                  label="Localização"
+                  value={location}
+                  onChange={setLocation}
+                  placeholder="Onde isso aconteceu?"
+                />
+
+                <div className="input-field-group">
+                  <div className="flex justify-between items-center mb-1">
+                    <label className="input-field-label">Legenda</label>
+                    <span
+                      className={`text-[8px] font-bold ${
+                        description.length < MIN_CHARACTERS
+                          ? 'text-red-500/50'
+                          : 'text-green-500/50'
+                      }`}
+                    >
+                      {description.length}/{MIN_CHARACTERS}
+                    </span>
+                  </div>
+                  <textarea
+                    className="textarea-field-native"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Conte algo..."
+                  />
                 </div>
-              )}
-              <input
-                type="file"
-                ref={fileInputRef}
-                className="hidden"
-                accept="image/*"
-                onChange={handleFileChange}
-              />
+
+                <div className="flex gap-2 md:gap-3">
+                  <TabButton
+                    active={activeTab === 'music'}
+                    onClick={() => toggleTab('music')}
+                    label={selectedTrack?.name || 'Trilha'}
+                    icon={<Music size={12} />}
+                  />
+                  <TabButton
+                    active={activeTab === 'tag'}
+                    onClick={() => toggleTab('tag')}
+                    label={
+                      taggedUsers.length
+                        ? `${taggedUsers.length} Marcados`
+                        : 'Marcar'
+                    }
+                    icon={<Users size={12} />}
+                  />
+                  <TabButton
+                    active={activeTab === 'event'}
+                    onClick={() => toggleTab('event')}
+                    label={selectedEvent || 'Evento'}
+                    icon={<Calendar size={12} />}
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="flex-1 flex flex-col space-y-7">
-              <InputField
-                label="Localização"
-                value={location}
-                onChange={setLocation}
-                placeholder="Onde isso aconteceu?"
-              />
-
-              <div className="input-field-group">
-                <div className="flex justify-between items-center mb-1">
-                  <label className="input-field-label">Legenda</label>
-                  <span
-                    className={`text-[8px] font-bold ${
-                      description.length < MIN_CHARACTERS
-                        ? 'text-red-500/50'
-                        : 'text-green-500/50'
-                    }`}
-                  >
-                    {description.length}/{MIN_CHARACTERS}
-                  </span>
-                </div>
-                <textarea
-                  className="textarea-field-native"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Conte algo..."
-                />
-              </div>
-
-              <div className="flex gap-3">
-                <TabButton
-                  active={activeTab === 'music'}
-                  onClick={() => toggleTab('music')}
-                  label={selectedTrack?.name || 'Trilha'}
-                  icon={<Music size={12} />}
-                />
-                <TabButton
-                  active={activeTab === 'tag'}
-                  onClick={() => toggleTab('tag')}
-                  label={
-                    taggedUsers.length
-                      ? `${taggedUsers.length} Marcados`
-                      : 'Marcar'
-                  }
-                  icon={<Users size={12} />}
-                />
-                <TabButton
-                  active={activeTab === 'event'}
-                  onClick={() => toggleTab('event')}
-                  label={selectedEvent || 'Evento'}
-                  icon={<Calendar size={12} />}
-                />
-              </div>
-
+            {/* Rodapé fixo para o botão de publicar */}
+            <div className="pt-6 shrink-0">
               <button
                 disabled={!isFormValid || isPublishing}
                 onClick={handlePublish}
-                className={`btn-publish-main ${
+                className={`btn-publish-main w-full ${
                   !isFormValid ? 'opacity-20 grayscale' : 'opacity-100'
                 }`}
               >
@@ -372,7 +388,7 @@ const CreatePostModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
   );
 };
 
-// Sub-componentes
+// Sub-componentes permanecem idênticos
 const InputField = ({ label, value, onChange, placeholder }: any) => (
   <div className="input-field-group">
     <label className="input-field-label">{label}</label>

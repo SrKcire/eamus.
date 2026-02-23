@@ -30,14 +30,13 @@
   @apply text-white text-[10px] font-black uppercase tracking-[0.6em] opacity-80;
 }
 
-/* Área de Mídia (Corrigido: 'group' removido daqui) */
+/* Área de Mídia */
 .media-upload-area {
   @apply w-full aspect-[4/5] border border-dashed border-white/20 rounded-[18px] 
          flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 
          transition-all mb-8 overflow-hidden relative;
 }
 
-/* O group-hover aqui funciona porque o marcador 'group' estará no JSX */
 .media-placeholder {
   @apply flex flex-col items-center gap-5 text-white/20 group-hover:text-white/50 transition-colors;
 }
@@ -64,4 +63,34 @@
   @apply w-full h-14 bg-white text-black font-black text-[11px] uppercase tracking-[0.6em] 
          rounded-sm mt-auto hover:bg-neutral-200 transition-all flex items-center 
          justify-center disabled:opacity-20 shadow-xl;
+}
+
+/* --- AJUSTES DE RESPONSIVIDADE (MOBILE) --- */
+
+@media (max-width: 767px) {
+  .modal-overlay {
+    @apply p-0; /* Remove padding para ocupar a tela toda */
+  }
+
+  .modal-container {
+    @apply w-full h-full; /* Tela cheia no mobile */
+  }
+
+  .modal-main-card {
+    @apply rounded-none border-none p-6; /* Remove bordas para parecer app nativo */
+  }
+
+  .modal-side-panel {
+    /* No mobile, o painel lateral sobrepõe o principal em tela cheia */
+    @apply static top-0 left-0 translate-y-0 w-full h-full rounded-none border-none;
+    @apply animate-in slide-in-from-bottom-5;
+  }
+
+  .media-upload-area {
+    @apply aspect-square mb-6; /* Ajusta proporção para ganhar espaço vertical */
+  }
+
+  .btn-publish-main {
+    @apply h-16 mb-2; /* Botão maior para facilitar o toque */
+  }
 }
