@@ -24,3 +24,21 @@
 .sidebar-widgets {
   @apply w-[350px] h-full flex-shrink-0 border-l border-white/5 bg-[#121212] z-[50] relative;
 }
+
+.main-layout-wrapper {
+  display: flex;
+  width: 100%;
+  min-h: 100vh;
+}
+
+/* Garante que o feed não tenha scroll horizontal no mobile */
+.feed-container {
+  width: 100%;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .feed-container {
+    padding-top: 10px; /* Espaço para o topo se necessário */
+  }
+}
