@@ -7,17 +7,24 @@
 
 /* Coluna de Navegação (Esquerda) */
 .sidebar-navigation {
-  @apply w-[280px] h-full flex-shrink-0 border-r border-white/5 bg-[#121212] z-[100] relative;
+  @apply w-[280px] h-full flex-shrink-0 border-r border-white/5 bg-[#121212] z-[110] relative;
 }
 
 /* Área de Conteúdo Principal (Centro) */
 .main-content-area {
-  @apply flex-1 h-full md:overflow-y-auto scrollbar-hide flex justify-center pt-8 px-0 md:px-4 bg-[#121212] z-10 relative;
+  @apply flex-1 h-full md:overflow-y-auto scrollbar-hide flex flex-col items-center pt-0 bg-[#121212] z-10 relative;
 }
 
-/* Container do Feed limitado */
-.feed-container {
-  @apply w-full max-w-full md:max-w-[654px] pb-20;
+/* BARRA SUPERIOR (Limitador de Scroll - Item 1.2) */
+.top-navigation-bar {
+  @apply sticky top-0 w-full bg-[#121212] z-[100] flex justify-center;
+  /* Altura ajustada para cobrir toda a área de 'Pra você / Seguindo' */
+  height: 70px; 
+}
+
+/* Container do Feed limitado (Item 1.1 e 2.2) */
+.feed-container-wrapper {
+  @apply w-full max-w-full md:max-w-[654px] pb-20 mt-8 px-4 md:px-0;
 }
 
 /* Coluna de Widgets/Sugestões (Direita) */
@@ -25,20 +32,39 @@
   @apply w-[350px] h-full flex-shrink-0 border-l border-white/5 bg-[#121212] z-[50] relative;
 }
 
-/* --- CORREÇÕES DE RESPONSIVIDADE (FORA DAS CLASSES) --- */
-
-@media (max-width: 767px) {
-  .sidebar-navigation {
-    @apply fixed bottom-0 left-0 w-full h-[70px] border-r-0 border-t border-white/10;
-  }
-
-  .main-content-area {
-    @apply pt-4 pb-[80px];
-  }
-}
+/* --- RESPONSIVIDADE --- */
 
 @media (max-width: 1023px) {
   .sidebar-widgets {
     @apply hidden;
   }
+}
+
+@media (max-width: 767px) {
+  /* Sidebar Mobile como barra inferior */
+  .sidebar-navigation {
+    @apply fixed bottom-0 left-0 w-full h-[70px] border-r-0 border-t border-white/10 bg-[#121212] z-[120];
+  }
+
+  /* Ajuste de respiro para não cortar conteúdo atrás da sidebar mobile */
+  .main-content-area {
+    @apply pb-[80px];
+  }
+
+  .top-navigation-bar {
+    height: 60px;
+  }
+
+  .feed-container-wrapper {
+    @apply mt-4;
+  }
+}
+
+/* Utilitário para esconder scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,182 +1,65 @@
-/* PostCard.css - Versão Final Consolidada */
+/* PostCard.css */
 
-/* Container Principal */
 .postcard-container {
-  @apply w-full md:w-[654px] mb-16 font-k2d text-white flex flex-col mx-auto relative;
+  @apply w-full mb-16 mx-auto flex flex-col items-center;
 }
 
-/* Modais e Overlays */
-.modal-overlay {
-  @apply fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-md px-4;
+@media (min-width: 768px) {
+  .postcard-container { @apply w-auto; }
 }
 
-.modal-content {
-  @apply border-[1.5px] border-white/20 rounded-[24px] bg-[#1E1E1E] overflow-hidden w-full max-w-md;
-}
-
-.modal-content-bordered {
-  @apply border-white p-7 shadow-2xl;
-}
-
-/* Opções (Denunciar/Sair) */
-.btn-option-danger {
-  @apply py-4 text-red-500 font-bold border-b border-white/10 hover:bg-white/5 flex items-center justify-center gap-2;
-}
-
-.btn-option-cancel {
-  @apply py-4 text-white/40 hover:text-white;
-}
-
-/* Compartilhamento */
-.share-header {
-  @apply flex justify-between items-center mb-6;
-}
-
-.share-label {
-  @apply text-[12px] uppercase tracking-widest opacity-50;
-}
-
-.share-body {
-  @apply flex flex-col md:flex-row gap-6 mb-8;
-}
-
-.share-preview-img {
-  @apply w-full md:w-32 h-48 md:h-32 shrink-0 border border-white/20 rounded-[16px] object-cover;
-}
-
-.share-textarea {
-  @apply flex-1 bg-transparent border-none outline-none text-[15px] h-32 resize-none;
-}
-
-.btn-share-confirm {
-  @apply w-full py-4 border-[1.5px] rounded-full font-bold flex items-center justify-center gap-2 transition-all;
-}
-
-/* Streaming */
-.streaming-grid {
-  @apply grid grid-cols-1 gap-3;
-}
-
-.streaming-link {
-  @apply w-full py-4 px-6 border-[1.5px] border-white/5 rounded-xl text-[14px] font-bold flex justify-between items-center transition-all;
-}
-
-/* Cabeçalho do Card */
 .postcard-header {
-  @apply mb-4 px-1 text-[14px] opacity-90;
+  /* Padding bem fino no mobile (6px) e sem padding no desktop */
+  @apply mb-4 w-full px-[6px] md:px-0;
 }
 
-.postcard-link-bold {
-  @apply font-bold underline hover:text-white/70;
+.main-post-layout {
+  @apply flex items-start justify-center w-full md:w-auto gap-5;
 }
 
-/* Mídia Central */
-.media-container {
-  @apply w-full flex items-stretch mb-6 cursor-pointer;
+.post-column {
+  /* Padding lateral reduzido para 'bem fino' no mobile */
+  @apply flex flex-col gap-4 w-full px-[6px] md:px-0;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .post-column { width: 580px; }
 }
 
 .media-wrapper {
-  @apply flex-1 aspect-square border-[1.5px] border-white rounded-[32px] p-[6px] overflow-hidden bg-transparent shadow-2xl relative;
+  @apply relative aspect-square border-[1.5px] border-white rounded-[32px] p-[6px] bg-transparent w-full;
 }
 
 .media-content {
-  @apply w-full h-full object-cover rounded-[26px] bg-white/5; /* Adicionado fundo leve para loading */
+  @apply w-full h-full object-cover rounded-[26px];
 }
 
-/* Ações Laterais */
-.actions-sidebar {
-  @apply flex flex-col justify-between py-4 w-[26px] shrink-0;
+/* Menus */
+.interaction-menu { @apply flex flex-col justify-between py-4; }
+.interaction-icons { @apply flex flex-col gap-6 items-center; }
+
+.desktop-only { @apply hidden md:flex h-[580px] w-[26px]; }
+.mobile-only { @apply flex md:hidden absolute right-6 bottom-10 h-[220px] py-0 z-20; }
+
+/* Stack de Cards */
+.bottom-cards-stack { @apply flex flex-col gap-4 w-full; }
+
+.description-card, .comments-card, .music-card {
+  @apply w-full border-[1.5px] border-white rounded-[24px] bg-transparent;
 }
 
-.actions-group {
-  @apply flex flex-col gap-7 items-center;
+/* Diminuí levemente o padding interno no mobile para ganhar espaço */
+.description-card { @apply p-5 md:p-6; }
+.comments-card { @apply p-4 md:p-5 bg-white/5; }
+.music-card { @apply flex items-center justify-between p-4; }
+
+.comment-input {
+  @apply w-full bg-white/10 rounded-full py-2 px-5 text-[13px] outline-none border border-transparent focus:border-white/30;
 }
 
-.social-menu-dropdown {
-  @apply absolute top-[35px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-5 z-10 py-4 bg-[#1e1e1e] border border-white/10 rounded-full px-2;
-}
-
-/* Descrição e Comentários */
-.description-box {
-  @apply w-full border-[1.5px] border-white rounded-[24px] p-7 bg-transparent;
-}
-
-@media (max-width: 640px) {
-  .description-box {
-    @apply p-5;
-  }
-}
-
-.hashtag-link {
-  @apply hover:text-white transition-colors cursor-pointer mr-1;
-}
-
-.comments-section {
-  @apply w-full border-[1.5px] border-white rounded-[24px] p-6 bg-white/5 animate-in fade-in slide-in-from-top-2;
-}
-
-.comments-list {
-  @apply max-h-[200px] overflow-y-auto mb-6 pr-2 scrollbar-hide;
-}
-
-.comment-input-wrapper {
-  @apply w-full bg-transparent border-[1.5px] border-white/20 rounded-full py-3 px-6 pr-12 text-[13px] outline-none;
-}
-
-.emoji-picker-popup {
-  @apply absolute bottom-full right-0 mb-4 p-3 bg-[#2a2a2a] border border-white/20 rounded-2xl flex gap-3 shadow-2xl z-50;
-}
-
-/* Footer (Música) */
-.postcard-footer {
-  @apply flex w-full mt-2;
-}
-
-.music-info-container {
-  @apply flex items-center gap-4 px-1 py-1;
-}
-
-.music-badge-container {
-  @apply flex items-center gap-3 bg-white/5 pr-5 py-1.5 pl-1.5 
-         rounded-full border border-white/5 hover:bg-white/10 
-         transition-all cursor-pointer;
-}
-
-/* --- ANIMAÇÕES --- */
-
-@keyframes spin-music {
+@keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-.animate-spin-slow {
-  animation: spin-music 8s linear infinite;
-}
-
-@keyframes heart-beat {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.3); opacity: 1; }
-  100% { transform: scale(1); opacity: 0; }
-}
-
-.animate-heart-pop {
-  animation: heart-beat 0.8s ease-out forwards;
-}
-
-/* --- SKELETON ANIMATION (Novo para Scroll Infinito) --- */
-@keyframes skeleton-pulse {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.5; }
-}
-
-.animate-pulse {
-  animation: skeleton-pulse 1.5s ease-in-out infinite;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
