@@ -4,12 +4,7 @@
   @apply w-full mb-16 mx-auto flex flex-col items-center;
 }
 
-@media (min-width: 768px) {
-  .postcard-container { @apply w-auto; }
-}
-
 .postcard-header {
-  /* Padding bem fino no mobile (6px) e sem padding no desktop */
   @apply mb-4 w-full px-[6px] md:px-0;
 }
 
@@ -18,7 +13,6 @@
 }
 
 .post-column {
-  /* Padding lateral reduzido para 'bem fino' no mobile */
   @apply flex flex-col gap-4 w-full px-[6px] md:px-0;
   max-width: 100%;
 }
@@ -28,36 +22,62 @@
 }
 
 .media-wrapper {
-  @apply relative aspect-square border-[1.5px] border-white rounded-[32px] p-[6px] bg-transparent w-full;
+  @apply relative aspect-square border-[1.5px] border-white rounded-[32px] p-[6px] bg-transparent w-full overflow-hidden;
 }
 
 .media-content {
   @apply w-full h-full object-cover rounded-[26px];
 }
 
-/* Menus */
-.interaction-menu { @apply flex flex-col justify-between py-4; }
-.interaction-icons { @apply flex flex-col gap-6 items-center; }
+/* --- MENU INTERAÇÃO MOBILE AJUSTADO --- */
+.interaction-menu-mobile {
+  @apply flex md:hidden absolute right-4 bottom-6 z-20;
+}
 
-.desktop-only { @apply hidden md:flex h-[580px] w-[26px]; }
-.mobile-only { @apply flex md:hidden absolute right-6 bottom-10 h-[220px] py-0 z-20; }
+.mobile-icons-capsule {
+  @apply flex flex-col items-center gap-2 p-1.5 rounded-full;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
 
-/* Stack de Cards */
+.mobile-btn {
+  @apply flex items-center justify-center transition-all active:scale-90;
+  width: 40px; 
+  height: 40px;
+}
+
+.menu-divider {
+  @apply w-6 h-[1px] bg-white/20 my-1;
+}
+
+/* --- MENU INTERAÇÃO DESKTOP --- */
+.interaction-menu-desktop {
+  @apply hidden md:flex flex-col justify-between py-4 h-[580px] w-[26px];
+}
+
+.interaction-icons-desktop {
+  @apply flex flex-col gap-8 items-center;
+}
+
+/* --- CARDS INFERIORES --- */
 .bottom-cards-stack { @apply flex flex-col gap-4 w-full; }
 
 .description-card, .comments-card, .music-card {
   @apply w-full border-[1.5px] border-white rounded-[24px] bg-transparent;
 }
 
-/* Diminuí levemente o padding interno no mobile para ganhar espaço */
 .description-card { @apply p-5 md:p-6; }
 .comments-card { @apply p-4 md:p-5 bg-white/5; }
 .music-card { @apply flex items-center justify-between p-4; }
 
 .comment-input {
-  @apply w-full bg-white/10 rounded-full py-2 px-5 text-[13px] outline-none border border-transparent focus:border-white/30;
+  @apply w-full bg-white/10 rounded-full py-2 px-5 text-[13px] outline-none;
 }
 
+/* --- ANIMAÇÕES --- */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

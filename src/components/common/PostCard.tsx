@@ -12,7 +12,6 @@ const PostCard: React.FC<any> = ({ id, user, location, image, description, audio
 
   return (
     <div className="postcard-container">
-      {/* HEADER: Alinhado à esquerda da imagem */}
       <div className="postcard-header">
         <p className="text-[14px]">
           Foto de <Link to={`/profile/${user}`} className="font-bold underline">{user}</Link> em <Link to="/search" className="font-bold underline">{location}</Link>
@@ -20,25 +19,39 @@ const PostCard: React.FC<any> = ({ id, user, location, image, description, audio
       </div>
 
       <div className="main-post-layout">
-        {/* COLUNA PRINCIPAL: Imagem + Cards debaixo */}
         <div className="post-column">
-          
           <div className="media-wrapper">
+            {/* Imagem do Post */}
             <img src={image} alt="Post" className="media-content" />
             
-            {/* MENU MOBILE: Dentro da imagem, canto inferior direito */}
-            <div className="interaction-menu mobile-only">
-              <div className="interaction-icons">
-                <Heart size={26} onClick={() => toggleLike(id)} className={isLiked ? 'fill-red-500 text-red-500' : ''} />
-                <MessageSquare size={26} onClick={() => setActiveCommentId(activeCommentId === id ? null : id)} />
-                <Bookmark size={26} />
-                <Share2 size={26} />
+            {/* MENU MOBILE COMPACTO (Dentro da imagem) */}
+            <div className="interaction-menu-mobile">
+              <div className="mobile-icons-capsule">
+                <button className="mobile-btn" onClick={() => toggleLike(id)}>
+                  <Heart size={22} className={isLiked ? 'fill-red-500 text-red-500' : 'text-white'} />
+                </button>
+                
+                <button className="mobile-btn" onClick={() => setActiveCommentId(activeCommentId === id ? null : id)}>
+                  <MessageSquare size={22} className="text-white" />
+                </button>
+                
+                <button className="mobile-btn">
+                  <Bookmark size={22} className="text-white" />
+                </button>
+                
+                <button className="mobile-btn">
+                  <Share2 size={22} className="text-white" />
+                </button>
+
+                <div className="menu-divider" />
+
+                <button className="mobile-btn">
+                  <MoreHorizontal size={22} className="text-white" />
+                </button>
               </div>
-              <MoreHorizontal size={26} />
             </div>
           </div>
 
-          {/* STACK DE CARDS: Descrição, Comentários e Música */}
           <div className="bottom-cards-stack">
             <div className="description-card">
               <p className="text-[15px]">{description}</p>
@@ -75,9 +88,9 @@ const PostCard: React.FC<any> = ({ id, user, location, image, description, audio
           </div>
         </div>
 
-        {/* MENU DESKTOP: Fora do card, à direita */}
-        <div className="interaction-menu desktop-only">
-          <div className="interaction-icons">
+        {/* MENU DESKTOP */}
+        <div className="interaction-menu-desktop">
+          <div className="interaction-icons-desktop">
             <Heart size={26} onClick={() => toggleLike(id)} className={isLiked ? 'fill-red-500 text-red-500' : ''} />
             <MessageSquare size={26} onClick={() => setActiveCommentId(activeCommentId === id ? null : id)} />
             <Bookmark size={26} />
